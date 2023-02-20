@@ -8,26 +8,22 @@ const server = new ApolloServer({
     type Query {
       #O TIPO ID É MUITO PARECIDO COM STRINGS E SEMPRE É CONVERTIDO PARA UMA STRING(não confiar)
       # UTILIZAR O (!) SERVE PARA DEFINIR QUE O RESOLVE DA QUERY NÃO PODE SER NULO (NULL)
-      user: User
-    }
-
-    type User {
-      id: ID!
-      userFirstName: String
-      userLastName: String
-      plan: String
+      id: ID
+      name: String
+      age: Int
+      salary: Float
+      fired: Boolean
+      arrayString: [String]
     }
   `,
   resolvers: {
     Query: {
-      user: () => {
-        return {
-          id: 'sksckln239843',
-          userFirstName: 'Felipe',
-          userLastName: 'De Freitas',
-          plan: 'Default',
-        };
-      },
+      id: () => 'kznvkjfe190291',
+      name: () => 'Felipe De Freitas',
+      age: () => 20,
+      salary: () => 5234.68,
+      fired: () => false,
+      arrayString: () => ['A', 'b', 'KJ', 'Zx'],
     },
   },
 });
