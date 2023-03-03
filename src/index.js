@@ -1,34 +1,16 @@
 import { hello } from './module.js';
 console.log(hello());
-
 import { ApolloServer, gql } from 'apollo-server';
+import { resolvers, typeDefs } from './graphql/shcema.js';
+import fetch from 'node-fetch';
 
 const server = new ApolloServer({
-  typeDefs: gql`
-    type Query {
-      #O TIPO ID É MUITO PARECIDO COM STRINGS E SEMPRE É CONVERTIDO PARA UMA STRING(não confiar)
-      # UTILIZAR O (!) SERVE PARA DEFINIR QUE O RESOLVE DA QUERY NÃO PODE SER NULO (NULL)
-      user: User
-    }
-
-    type User {
-      id: ID!
-      userFirstName: String
-      userLastName: String
-      plan: String
-    }
-  `,
-  resolvers: {
-    Query: {
-      user: () => {
-        return {
-          id: 'sksckln239843',
-          userFirstName: 'Felipe',
-          userLastName: 'De Freitas',
-          plan: 'Default',
-        };
-      },
-    },
+  typeDefs,
+  resolvers: resolvers,
+  context: () => {
+    return {
+      fetch,
+    };
   },
 });
 
