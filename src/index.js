@@ -3,15 +3,12 @@ console.log(hello());
 import { ApolloServer, gql } from 'apollo-server';
 import { resolvers, typeDefs } from './graphql/shcema.js';
 import fetch from 'node-fetch';
+import { context } from './graphql/context.js';
 
 const server = new ApolloServer({
   typeDefs,
   resolvers: resolvers,
-  context: () => {
-    return {
-      fetch,
-    };
-  },
+  context,
 });
 
 server.listen(4000).then(({ url }) => {
