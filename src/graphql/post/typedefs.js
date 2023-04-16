@@ -19,10 +19,9 @@ export const postTypeDefs = gql`
     id: ID!
     title: String!
     body: String!
-    #userId:String!
-    #user: User!
+    userId: String!
+    user: User!
     indexRef: Int!
     createdAt: String!
-    unixTimestamp: String!
   }
 `;
