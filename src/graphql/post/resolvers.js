@@ -23,7 +23,7 @@ const userDataLoader = new DataLoader(async (ids) => {
   return ids.map((id) => data.find((user) => user.id == id));
 });
 
-const user = async ({ userId }, _, { getUsers }) => {
+const user = async ({ userId }, _, { userDataLoader }) => {
   userDataLoader.load(userId);
   const response = await getUsers('/' + userId);
   return response.json();
