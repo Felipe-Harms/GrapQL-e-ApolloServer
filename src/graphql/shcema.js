@@ -5,6 +5,7 @@ import { postTypeDefs } from './post/typedefs';
 import { postResolvers } from './post/resolvers';
 import { apiFiltersTypedefs } from './api-filters/typedesfs';
 import { apiFiltersResolvers } from './api-filters/resolvers';
+
 const rootTypeDefs = gql`
   type Query {
     hi: String

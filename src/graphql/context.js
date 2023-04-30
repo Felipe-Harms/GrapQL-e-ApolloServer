@@ -9,7 +9,7 @@ const API_URL = process.env.API_URL;
 export const context = () => {
   return {
     userdataLoader: makeUserDataLoader(getUsers(fetch)),
-    postdataLoader: makePostDataLoader(getPost(fetch)),
+    postdataLoader: makePostDataLoader(getPosts(fetch)),
     getUsers: getUsers(fetch),
     getPosts: getPosts(fetch),
   };

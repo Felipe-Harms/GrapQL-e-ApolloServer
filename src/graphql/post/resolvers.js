@@ -1,15 +1,13 @@
 import { fetch } from 'node-fetch';
 import { DataLoader } from 'dataloader';
 
-const posts = async (_, { input }, { getPosts }) => {
-  const apiFiltersInput = new URLSearchParams(input);
-  const posts = await getPosts('/?' + apiFiltersInput);
-  return posts.json();
+const posts = async (_, { input }, { dataSources }) => {
+  const posts = dataSources.postAPI.getPosts(input);
+  return posts;
 };
 
-const post = async (_, { id }, { getPosts }) => {
-  const response = await getPosts('/' + id);
-  const post = await response.json();
+const post = async (_, { id }, { dataSources }) => {
+  const post = dataSources.postAPI.getPost(id);
   return post;
 };
 
