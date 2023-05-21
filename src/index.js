@@ -5,6 +5,7 @@ import { resolvers, typeDefs } from './graphql/shcema.js';
 import fetch from 'node-fetch';
 import { context } from './graphql/context.js';
 import { PostsAPI } from './graphql/post/datasources.js';
+import { UsersAPI } from './graphql/user/datasources.js';
 
 const server = new ApolloServer({
   typeDefs,
@@ -12,7 +13,8 @@ const server = new ApolloServer({
   context,
   dataSources: () => {
     return {
-      postAPI: new PostsAPI(fetch),
+      postAPI: new PostsAPI(),
+      userAPI: new UsersAPI(),
     };
   },
 });

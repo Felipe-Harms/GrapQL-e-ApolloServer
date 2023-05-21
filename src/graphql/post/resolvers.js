@@ -1,30 +1,18 @@
-import { fetch } from 'node-fetch';
-import { DataLoader } from 'dataloader';
+import { PostsAPI } from '../post/datasources';
+import { UsersAPI } from './datasources';
 
 const posts = async (_, { input }, { dataSources }) => {
-  const posts = dataSources.postAPI.getPosts(input);
+  const posts = await dataSources.postAPI.getPosts(input);
   return posts;
 };
 
 const post = async (_, { id }, { dataSources }) => {
-  const post = dataSources.postAPI.getPost(id);
+  const post = await dataSources.postAPI.getPost(id);
   return post;
 };
 
-DataLoader = require('dataloader');
-
-const userDataLoader = new DataLoader(async (ids) => {
-  const urlQuery = ids.join('&id=');
-  const url = 'http://localhost:3000/users/?id=' + urlQuery;
-  const response = await fetch(url);
-  const data = await response.json();
-  return ids.map((id) => data.find((user) => user.id == id));
-});
-
-const user = async ({ userId }, _, { userDataLoader }) => {
-  userDataLoader.load(userId);
-  const response = await getUsers('/' + userId);
-  return response.json();
+const user = async ({ userId }, _, { dataSources }) => {
+  return dataSources.userAPI.batchLoadByPostId(userId);
 };
 
 export const postResolvers = {
