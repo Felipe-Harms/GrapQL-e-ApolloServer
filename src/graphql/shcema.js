@@ -8,13 +8,22 @@ import { apiFiltersResolvers } from './api-filters/resolvers';
 
 const rootTypeDefs = gql`
   type Query {
+    _empty: Boolean
     hi: String
+  }
+
+  type Mutation {
+    _empty: Boolean
   }
 `;
 
 const rootResolvers = {
   Query: {
     hi: () => 'Hi de novo',
+    _empty: () => true,
+  },
+  Mutation: {
+    _empty: () => true,
   },
 };
 
