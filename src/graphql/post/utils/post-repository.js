@@ -13,6 +13,42 @@ export const createPostFn = async (postData, dataSource) => {
   return await dataSource.post('', { ...postInfo });
 };
 
+export const updatePostFn = async (postId, postData, dataSource) => {
+  if (!postId) {
+    throw new ValidationError('Missing postId');
+  }
+
+  const { title, body, userId } = postData;
+
+  if (typeof title !== 'undefined') {
+    if (!title) {
+      throw new ValidationError('Title cannot be empty');
+    }
+  }
+
+  if (typeof body !== 'undefined') {
+    if (!body) {
+      throw new ValidationError('Body cannot be empty');
+    }
+  }
+
+  if (typeof userId !== 'undefined') {
+    if (!userId) {
+      throw new ValidationError('userID cannot be empty');
+    }
+    await userExists(userId, dataSource);
+  }
+
+  return dataSource.patch(postId, { ...postData });
+};
+
+export const deletePostFn = async (postId, dataSource) => {
+  if (!postId) throw new ValidationError('Missing postId');
+
+  const deleted = await dataSource.delete(postId);
+  return !!deleted;
+};
+
 const userExists = async (userId, dataSource) => {
   try {
     await dataSource.context.dataSources.userAPI.getUser(userId);

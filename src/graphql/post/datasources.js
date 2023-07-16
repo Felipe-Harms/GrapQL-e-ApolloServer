@@ -25,6 +25,14 @@ export class PostsAPI extends RESTDataSource {
     return createPostFn(postData, this);
   }
 
+  async updatePost(postId, postData) {
+    return updatePostFn(postId, postData, this);
+  }
+
+  async deletePost(postId, postData) {
+    return deletePostFn(postId, postData, this);
+  }
+
   batchLoadByUserId(id) {
     return this.dataLoader.load(id);
   }

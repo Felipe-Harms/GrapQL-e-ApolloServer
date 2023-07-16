@@ -14,8 +14,15 @@ const post = async (_, { id }, { dataSources }) => {
 //Mutation Resolvers
 
 const createPost = async (_, { data }, { dataSources }) => {
-  console.log(data);
   return dataSources.postAPI.createPost(data);
+};
+
+const updatePost = async (_, { postId, data }, { dataSources }) => {
+  return dataSources.postAPI.updatePost(postId, data);
+};
+
+const deletePost = async (_, { postId }, { dataSources }) => {
+  return dataSources.postAPI.deletePost(postId);
 };
 
 //Field Resolvers
@@ -26,6 +33,6 @@ const user = async ({ userId }, _, { dataSources }) => {
 
 export const postResolvers = {
   Query: { post, posts },
-  Mutation: { createPost },
+  Mutation: { createPost, updatePost, deletePost },
   Post: { user },
 };
