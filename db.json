@@ -159,6 +159,16 @@
       "userName": "marcia_carvalho81",
       "indexRef": 1,
       "createdAt": "2016-12-08T00:49:39.870Z"
+    },
+    {
+      "firstName": "Fulano",
+      "lastName": "Da Silva",
+      "userName": "FulSilva",
+      "password": "123aB",
+      "passwordHash": "$2b$12$xc.coshIRk.e8BW93KcXu.MjCAnVV2yPu49FWP34nGSh7iRNyUcLO",
+      "indexRef": 21,
+      "createdAt": "2023-07-30T21:20:06.325Z",
+      "id": "XM8JgVB"
     }
   ],
   "posts": [

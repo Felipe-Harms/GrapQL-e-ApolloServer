@@ -6,6 +6,7 @@ import fetch from 'node-fetch';
 import { context } from './graphql/context.js';
 import { PostsAPI } from './graphql/post/datasources.js';
 import { UsersAPI } from './graphql/user/datasources.js';
+import { LoginAPI } from './graphql/login/datasources.js';
 
 const server = new ApolloServer({
   typeDefs,
@@ -15,6 +16,7 @@ const server = new ApolloServer({
     return {
       postAPI: new PostsAPI(),
       userAPI: new UsersAPI(),
+      loginAPI: new LoginAPI(),
     };
   },
 });
